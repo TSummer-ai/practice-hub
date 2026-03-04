@@ -8,14 +8,16 @@ public:
     {
         int l = 0;
         int r = x;
+        if (x <= 1)
+            return x;
         while (l < r)
         {
             int mid = (l + r) / 2;
-            if (mid * mid == x)
+            if (mid == x / mid) // 避免 mid * mid 可能导致的整数溢出
             {
                 return mid;
             }
-            else if (mid * mid < x)
+            else if (mid < x / mid)
             {
                 l = mid + 1;
             }
@@ -24,6 +26,6 @@ public:
                 r = mid;
             }
         }
-        return l;
+        return l - 1;
     }
 };
